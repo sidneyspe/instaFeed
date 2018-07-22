@@ -44,3 +44,6 @@ jspm_packages
 .idea
 
 routes/.node-persist/
+
+# Config files
+config/api.js
