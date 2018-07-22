@@ -3,12 +3,13 @@ var https = require('https');
 var router = express.Router();
 var passport = require('passport');
 const Instagram = require('node-instagram').default;
+var config = require('../config/api.js');
 
 // Create a new instance.
 const instagram = new Instagram({
-  clientId: clientID,
-  clientSecret: clientSecret,
-  accessToken: token,
+  clientId: config.api.clientID,
+  clientSecret: config.api.clientSecret,
+  accessToken: config.api.token,
 });
 
 router.get('/api/media/', function(req, res, next) {
