@@ -13,15 +13,17 @@ const instagram = new Instagram({
 });
 
 router.get('/api/media/', function(req, res, next) {
-
   instagram.get('users/self/media/recent', (err, response) => {
     if (err) {
       console.log(err);
     } else {
       var images = [];
       for (item in response.data){
-        var imgURL = response.data[item].images.thumbnail.url;
-        images.push(imgURL);
+        var img = new Object();
+        img.url = response.data[item].images.thumbnail.url;
+        img.created_time = parseInt(response.data[item].created_time * 1000);
+        img.likes = response.data[item].likes.count;
+        images.push(img);
       }
       res.send(images);
     }
